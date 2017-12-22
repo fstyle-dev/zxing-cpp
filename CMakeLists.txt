@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.0)
 project(zxing)
 
 option(BUILD_TESTING "Enable generation of test targets" OFF)
-option(BUILD_OPENCV_CLI "Enable generation of opencv cli" OFF)
+option(BUILD_OPENCV_CLI "Enable generation of opencv cli" ON)
 
 set(CMAKE_LIBRARY_PATH /opt/local/lib ${CMAKE_LIBRARY_PATH})
 
@@ -68,7 +68,7 @@ else()
 endif()
 
 # Add OpenCV cli executable
-if(BUILD_OPENCV_CLI AND OpenCV_FOUND)
+if(BUILD_OPENCV_CLI AND OpenCV_imgproc_FOUND AND OpenCV_highgui_FOUND)
     file(GLOB_RECURSE OPENCV_ZXING_FILES
         "./opencv-cli/src/*.cpp"
         "./opencv-cli/src/*.h"
